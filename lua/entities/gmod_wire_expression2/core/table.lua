@@ -37,7 +37,7 @@ local DEFAULT = {n={},ntypes={},s={},stypes={},size=0}
 
 registerType("table", "t", table.Copy(DEFAULT),
 	function(self, input)
-		if input == DEFAULT or IsEmpty(input) then
+		if IsEmpty(input.n) and IsEmpty(input.s) then
 			return table.Copy(DEFAULT)
 		end
 		return input
