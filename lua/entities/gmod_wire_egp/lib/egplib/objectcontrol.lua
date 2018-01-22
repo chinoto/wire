@@ -214,6 +214,9 @@ function EGP:CreateObject( Ent, ObjID, Settings )
 			return self:EditObject( v, Settings ), v
 		end
 	else -- Did not exist. Create:
+		if #Ent.RenderTable >= self.ConVars.MaxObjects:GetInt() then
+			return false -- Object limit reached, refuse to create
+		end
 		local Obj = self:GetObjectByID( ObjID )
 		self:EditObject( Obj, Settings )
 		Obj.index = Settings.index
